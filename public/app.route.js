@@ -21,7 +21,8 @@ function routePlatform($stateProvider, $httpProvider) {
           config.url.indexOf(apiEndpoint + "v1/token") === -1 &&
           config.url.indexOf(apiEndpoint + "v0/token") === -1
         ) {
-          let localToken = $cookies.get("_auth");
+          let localToken =
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InJvbGVfaWQiOjk5OX0sImlhdCI6MTY2NjIyMDg3NywiZXhwIjoxNjY2MzA3Mjc3fQ.-_PXDtNrvIY1BqOggqKeVOtplvbKCcoqewOU93kaid4";
           try {
             await $http.post($core.api("v1") + "token/check", {
               token: localToken,
@@ -81,6 +82,9 @@ function routePlatform($stateProvider, $httpProvider) {
           $window
         ) {
           let deferred = $q.defer();
+
+          console.log($auth, $auth.isValid, $auth.getData());
+
           if ($auth.isValid() === true) {
             if ($auth.getData().role_id && $auth.getData().role_id < 10) {
               $account
