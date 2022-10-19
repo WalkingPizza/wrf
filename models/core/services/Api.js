@@ -1,6 +1,9 @@
 angular.module("viaggiApp").service("$api", service);
 
 function service($http, $core, $cookies, $auth) {
+  console.log("Core Object:", $core);
+  console.log("Core API Object:", $core.api);
+
   var api = this;
   api.callViaggi = "viaggi";
   api.callTurni = "turni";
